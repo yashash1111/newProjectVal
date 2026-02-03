@@ -85,7 +85,7 @@ function createHeart() {
 function fireworks() {
   const f = document.createElement("div");
   f.className = "firework";
-  f.innerHTML = "🎆";
+  f.innerHTML = "💖";
   f.style.left = Math.random() * 100 + "vw";
   f.style.top = Math.random() * 100 + "vh";
   document.body.appendChild(f);
