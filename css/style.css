@@ -265,3 +265,16 @@ button {
     font-size: 0.8rem;
   }
 }
+
+/* ===== MOBILE ZOOM LOCK ===== */
+html, body {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button,
+.heart-hold {
+  touch-action: manipulation;
+}

@@ -93,7 +93,19 @@ function fireworks() {
 }
 
 /* 📸 Slideshow */
+// const photos = [
+//   "https://picsum.photos/300/200?1",
+//   "https://picsum.photos/300/200?2",
+//   "https://picsum.photos/300/200?3"
+// ];
+let slideIndex = 0;
 
+function startSlideshow() {
+  setInterval(() => {
+    slideIndex = (slideIndex + 1) % photos.length;
+    document.getElementById("slide").src = photos[slideIndex];
+  }, 2500);
+}
 
 /* 💌 Love Letter */
 const letterText = `Manaswi ❤️
