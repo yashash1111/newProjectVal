@@ -267,14 +267,14 @@ button {
 }
 
 /* ===== MOBILE ZOOM LOCK ===== */
-html, body {
+/* html, body {
   touch-action: manipulation;
   overscroll-behavior: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
-}
+} */
 
-button,
+/* button, */
 .heart-hold {
   touch-action: manipulation;
 }
