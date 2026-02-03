@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff6ec7, #7b2ff7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Glass Card */
+  .container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 50px 60px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .question {
+    font-size: 2.6rem;
+    margin-bottom: 50px;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Button Area */
+  .buttons {
+    position: relative;
+    height: 120px;
+    width: 350px;
+    margin: 0 auto;
+  }
+  
+  /* Buttons */
+  button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.25s ease;
+  }
+  
+  /* YES Button */
+  #yesBtn {
+    left: 0;
+    background: linear-gradient(135deg, #00ffb3, #00c896);
+    color: #000;
+    box-shadow: 0 0 25px #00ffb3;
+    animation: pulse 1.5s infinite;
+  }
+  
+  #yesBtn:hover {
+    transform: scale(1.15);
+  }
+  
+  /* NO Button */
+  #noBtn {
+    right: 0;
+    background: linear-gradient(135deg, #ff4d4d, #ff1e1e);
+    color: white;
+    box-shadow: 0 0 25px #ff4d4d;
+  
+    /* 🔒 LOCK SIZE — THIS IS THE KEY */
+    width: 140px;
+    height: 52px;
+  
+    /* 🔒 PREVENT ANY TRANSFORM SIDE EFFECT */
+    transform: none !important;
+  
+    /* 🔒 ONLY MOVE, NOTHING ELSE */
+    transition: left 0.07s linear, top 0.07s linear;
+
+  }
+  
+  
+  /* Love Screen */
+  .love-gif {
+    width: 280px;
+    margin: 25px 0;
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Pulse Animation */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 15px #00ffb3; }
+    50% { box-shadow: 0 0 35px #00ffb3; }
+    100% { box-shadow: 0 0 15px #00ffb3; }
+  }
+  
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 30px 20px;
+      width: 90%;
+    }
+  
+    .question {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+  
+    .buttons {
+      width: 260px;
+      height: 160px;
+    }
+  
+    button {
+      font-size: 1rem;
+      padding: 12px 28px;
+    }
+  
+    .love-gif {
+      width: 220px;
+    }
+  }
+  
