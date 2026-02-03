@@ -212,4 +212,23 @@ button {
   }
 }
 
-@media (max-width: 480px) { .container { padding: 30px 20px; width: 90%; } .question { font-size: 1.8rem; margin-bottom: 30px; } .buttons { width: 260px; height: 160px; } button { font-size: 1rem; padding: 12px 28px; } .love-gif { width: 220px; } }
+@media (max-width: 480px) { .container { padding: 30px 20px; width: 90%; } .question { font-size: 1.8rem; margin-bottom: 30px; }  .love-gif { width: 220px; } }
+@media (max-width: 480px) {
+  .buttons {
+    width: 260px;
+    height: 140px;
+  }
+
+  button {
+    width: 120px !important;
+    height: 52px !important;
+    font-size: 1rem;
+  }
+
+  #noBtn {
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 52px;
+    max-height: 52px;
+  }
+}
