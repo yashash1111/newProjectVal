@@ -140,8 +140,8 @@ button {
   right: 0;
   background: linear-gradient(135deg, #ff4d4d, #ff1e1e);
   color: white;
-  width: 140px;
-  height: 59px;
+  /* width: 140px;
+  height: 59px; */
   transition: left 0.07s linear, top 0.07s linear;
 }
 
