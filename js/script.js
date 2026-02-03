@@ -1,66 +1,114 @@
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-
+const lockScreen = document.getElementById("lockScreen");
 const home = document.getElementById("home");
 const yesScreen = document.getElementById("yesScreen");
-const container = document.querySelector(".container");
 
-function moveNoButton() {
-  const containerRect = container.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+const heartHold = document.getElementById("heartHold");
+const heartFill = document.getElementById("heartFill");
 
-  const padding = 20;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const bgMusic = document.getElementById("bgMusic");
 
-  const maxX = containerRect.width - btnRect.width - padding;
-  const maxY = containerRect.height - btnRect.height - padding;
+/* ❤️ HOLD TO UNLOCK */
+let holdTime = 0;
+let holdInterval;
 
-  // Jump FARTHER by re-rolling until distance is big
-  let randomX, randomY;
-  do {
-    randomX = Math.random() * maxX;
-    randomY = Math.random() * maxY;
-  } while (
-    Math.abs(randomX - btnRect.left) < 100 &&
-    Math.abs(randomY - btnRect.top) < 60
-  );
+function startHold() {
+  holdInterval = setInterval(() => {
+    holdTime += 100;
+    heartFill.style.height = (holdTime / 3000) * 100 + "%";
 
-  noBtn.style.left = `${randomX}px`;
-  noBtn.style.top = `${randomY}px`;
+    if (holdTime >= 3000) {
+      clearInterval(holdInterval);
+      lockScreen.classList.add("hidden");
+      home.classList.remove("hidden");
+    }
+  }, 100);
 }
 
-// Desktop: reacts BEFORE you touch it
+function stopHold() {
+  clearInterval(holdInterval);
+  holdTime = 0;
+  heartFill.style.height = "0%";
+}
+
+heartHold.addEventListener("mousedown", startHold);
+heartHold.addEventListener("mouseup", stopHold);
+heartHold.addEventListener("mouseleave", stopHold);
+
+heartHold.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  startHold();
+});
+
+heartHold.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  stopHold();
+});
+
+
+/* 🏃 NO BUTTON */
+function moveNoButton() {
+  const box = home.getBoundingClientRect();
+  noBtn.style.left = Math.random() * (box.width - 150) + "px";
+  noBtn.style.top = Math.random() * (box.height - 80) + "px";
+}
+
 noBtn.addEventListener("mousemove", moveNoButton);
+noBtn.addEventListener("touchmove", moveNoButton);
+noBtn.addEventListener("click", e => e.preventDefault());
 
-// Mobile: reacts as soon as finger approaches
-noBtn.addEventListener("touchmove", (e) => {
-  e.preventDefault();
-  moveNoButton();
-});
-
-// Extra safety: block clicks completely
-noBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-});
-
+/* 💖 YES BUTTON */
 yesBtn.addEventListener("click", () => {
   home.classList.add("hidden");
   yesScreen.classList.remove("hidden");
+
+  bgMusic.play();
   setInterval(createHeart, 250);
+  setInterval(fireworks, 300);
+
+  startSlideshow();
+  typeLetter();
 });
 
+/* ❤️ Hearts */
 function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}
 
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 20 + "px";
-  heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+/* 🎆 Fireworks */
+function fireworks() {
+  const f = document.createElement("div");
+  f.className = "firework";
+  f.innerHTML = "🎆";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 1500);
+}
 
-  document.body.appendChild(heart);
+/* 📸 Slideshow */
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
+
+/* 💌 Love Letter */
+const letterText = `Manaswi ❤️
+From the moment you came into my life,
+everything feels warmer and brighter.
+This page is small,
+but my love for you is endless 💖`;
+
+function typeLetter() {
+  const el = document.getElementById("loveLetter");
+  let i = 0;
+  el.innerHTML = "";
+
+  const t = setInterval(() => {
+    el.innerHTML += letterText.charAt(i++);
+    if (i >= letterText.length) clearInterval(t);
+  }, 50);
 }
