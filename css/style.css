@@ -77,7 +77,7 @@
   
     /* 🔒 LOCK SIZE — THIS IS THE KEY */
     width: 140px;
-    height: 52px;
+    height: 62px;
   
     /* 🔒 PREVENT ANY TRANSFORM SIDE EFFECT */
     transform: none !important;
